@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Text Utility</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        p {
+            color: #666;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            resize: vertical;
+            box-sizing: border-box; /* Include padding in width */
+        }
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            flex-grow: 1; /* Allow buttons to grow */
+            min-width: 120px; /* Minimum width for buttons */
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #output {
+            margin-top: 15px;
+            padding: 10px;
+            border: 1px dashed #ccc;
+            border-radius: 4px;
+            min-height: 50px;
+            background-color: #e9ecef;
+            font-family: monospace;
+            white-space: pre-wrap; /* Preserve formatting and wrap text */
+            word-break: break-all; /* Break long words */
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Text Utility</h1>
+        <p>Type some text below and use the buttons to modify or analyze it.</p>
+        <textarea id="inputText" placeholder="Enter your text here..."></textarea>
+        <div class="buttons">
+            <button id="uppercaseBtn">Convert to Uppercase</button>
+            <button id="lowercaseBtn">Convert to Lowercase</button>
+            <button id="reverseBtn">Reverse Text</button>
+            <button id="wordCountBtn">Count Words</button>
+            <button id="clearBtn">Clear All</button>
+        </div>
+        <h3>Result:</h3>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        // Get references to DOM elements
+        const inputText = document.getElementById('inputText');
+        const outputDiv = document.getElementById('output');
+        const uppercaseBtn = document.getElementById('uppercaseBtn');
+        const lowercaseBtn = document.getElementById('lowercaseBtn');
+        const reverseBtn = document.getElementById('reverseBtn');
+        const wordCountBtn = document.getElementById('wordCountBtn');
+        const clearBtn = document.getElementById('clearBtn');
+
+        // Helper function to update the output display
+        function updateOutput(text) {
+            outputDiv.textContent = text;
+        }
+
+        // --- Event Listeners and Logic --- 
+        // Each button click demonstrates applying learned JavaScript concepts
+        // to build a functional part of a small project.
+
+        uppercaseBtn.addEventListener('click', () => {
+            const text = inputText.value;
+            // Applying a common string method directly to solve a problem.
+            updateOutput(text.toUpperCase());
+        });
+
+        lowercaseBtn.addEventListener('click', () => {
+            const text = inputText.value;
+            // Another direct application of a string method, building a feature.
+            updateOutput(text.toLowerCase());
+        });
+
+        reverseBtn.addEventListener('click', () => {
+            const text = inputText.value;
+            // Combining multiple string/array methods to create a more complex feature.
+            updateOutput(text.split('').reverse().join(''));
+        });
+
+        wordCountBtn.addEventListener('click', () => {
+            const text = inputText.value.trim();
+            if (text === '') {
+                updateOutput('Word count: 0');
+                return;
+            }
+            // This involves splitting by whitespace and filtering, a practical application of array methods.
+            const words = text.split(/\s+/).filter(word => word !== '');
+            updateOutput(`Word count: ${words.length}`);
+        });
+
+        clearBtn.addEventListener('click', () => {
+            inputText.value = '';
+            updateOutput('');
+        });
+
+        // Initialize output display
+        updateOutput('');
+    </script>
+</body>
+</html>
